@@ -1,9 +1,7 @@
 package fr.sawox.blog.adapter.out.persistence;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.Table;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -24,4 +22,5 @@ public class PostJpaEntity {
     private String status;
     private LocalDateTime creationDate;
     private LocalDateTime updatedDate;
+    private LocalDateTime publicationDate;
 }

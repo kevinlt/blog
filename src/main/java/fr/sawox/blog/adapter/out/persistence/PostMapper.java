@@ -17,6 +17,7 @@ public class PostMapper {
                 postJpaEntity.getContent(),
                 postJpaEntity.getCreationDate().toInstant(ZoneOffset.UTC),
                 postJpaEntity.getUpdatedDate() != null ? postJpaEntity.getUpdatedDate().toInstant(ZoneOffset.UTC) : null,
+                postJpaEntity.getPublicationDate() != null ? postJpaEntity.getPublicationDate().toInstant(ZoneOffset.UTC) : null,
                 Status.valueOf(postJpaEntity.getStatus())
                 );
     }
@@ -28,7 +29,8 @@ public class PostMapper {
                 post.getContent(),
                 post.getStatus().name(),
                 LocalDateTime.ofInstant(post.getCreationDate(), ZoneOffset.UTC),
-                post.getUpdatedDate() != null ? LocalDateTime.ofInstant(post.getUpdatedDate(), ZoneOffset.UTC) : null
+                post.getUpdatedDate() != null ? LocalDateTime.ofInstant(post.getUpdatedDate(), ZoneOffset.UTC) : null,
+                post.getPublicationDate() != null ? LocalDateTime.ofInstant(post.getPublicationDate(), ZoneOffset.UTC) : null
         );
     }
 }

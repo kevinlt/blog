@@ -28,10 +28,11 @@ public class PostPersistenceAdapterTest extends AbstractBaseIntegration {
                 "content",
                 Status.DRAFT,
                 Instant.now(),
-        null);
+                null,
+                null);
         postPort.addPost(Post.fromSnapshot(postSnapshot));
         // When
-        PostJpaEntity postJpaEntity = postJpaRepository.findAll().get(0);
+        PostJpaEntity postJpaEntity = postJpaRepository.findAll().getFirst();
         // Then
         assert postJpaEntity != null;
     }
@@ -45,6 +46,7 @@ public class PostPersistenceAdapterTest extends AbstractBaseIntegration {
                 "content",
                 Status.DRAFT,
                 Instant.now(),
+                null,
                 null);
         postPort.addPost(Post.fromSnapshot(postSnapshot));
 
@@ -54,6 +56,7 @@ public class PostPersistenceAdapterTest extends AbstractBaseIntegration {
                 "content2",
                 Status.DRAFT,
                 Instant.now(),
+                null,
                 null);
         postPort.addPost(Post.fromSnapshot(postSnapshot2));
         // When
@@ -71,6 +74,7 @@ public class PostPersistenceAdapterTest extends AbstractBaseIntegration {
                 "content",
                 Status.DRAFT,
                 Instant.now(),
+                null,
                 null);
         postPort.addPost(Post.fromSnapshot(postSnapshot));
 
@@ -80,6 +84,7 @@ public class PostPersistenceAdapterTest extends AbstractBaseIntegration {
                 "content2",
                 Status.PUBLISHED,
                 Instant.now(),
+                null,
                 null);
         postPort.addPost(Post.fromSnapshot(postSnapshot2));
 
@@ -89,6 +94,7 @@ public class PostPersistenceAdapterTest extends AbstractBaseIntegration {
                 "content3",
                 Status.DRAFT,
                 Instant.now(),
+                null,
                 null);
         postPort.addPost(Post.fromSnapshot(postSnapshot3));
         // When

@@ -2,11 +2,15 @@ package fr.sawox.blog.application.domain.model;
 
 import fr.sawox.blog.common.Status;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.Instant;
 import java.util.UUID;
 
 @AllArgsConstructor
+@Getter
+@Setter
 public class Post {
 
     private final UUID id;
@@ -19,6 +23,8 @@ public class Post {
 
     private Instant updatedDate;
 
+    private Instant publicationDate;
+
     private Status status;
 
     public Post(String title, String content) {
@@ -27,60 +33,20 @@ public class Post {
         this.content = content;
     }
 
-    public UUID getId() {
-        return id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String newTitle) {
-        this.title = newTitle;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public Instant getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Instant creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public Instant getUpdatedDate() {
-        return updatedDate;
-    }
-
-    public void setUpdatedDate(Instant updatedDate) {
-        this.updatedDate = updatedDate;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
     public static Post fromSnapshot(PostSnapshot snapshot) {
-        return new Post(snapshot.id, snapshot.title, snapshot.content, snapshot.creationDate, snapshot.updatedDate, snapshot.status);
+        return new Post(snapshot.id, snapshot.title, snapshot.content, snapshot.creationDate, snapshot.updatedDate, snapshot.publicationDate, snapshot.status);
     }
 
     public PostSnapshot toSnapshot() {
-        return new PostSnapshot(id, title, content, status, creationDate, updatedDate);
+        return new PostSnapshot(id, title, content, status, creationDate, updatedDate, publicationDate);
     }
 
+    public void publish() {
+        this.status = Status.PUBLISHED;
+        this.publicationDate = Instant.now();
+    }
 
-    public record PostSnapshot(UUID id, String title, String content, Status status, Instant creationDate, Instant updatedDate) {
+    public record PostSnapshot(UUID id, String title, String content, Status status, Instant creationDate, Instant updatedDate, Instant publicationDate) {
         public boolean isDraft() {
             return status == Status.DRAFT;
         }
@@ -95,9 +61,6 @@ public class Post {
 
         public boolean isUpdated() {
             return updatedDate != null;
-        }
-
-        public void setTitle(String newTitle) {
         }
     }
 
