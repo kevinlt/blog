@@ -3,6 +3,7 @@ package fr.sawox.blog.adapter.out.persistence;
 import fr.sawox.blog.application.domain.model.Post;
 import fr.sawox.blog.application.port.out.PostPort;
 import fr.sawox.blog.common.PersistenceAdapter;
+import fr.sawox.blog.common.Status;
 
 import java.util.List;
 import java.util.UUID;
@@ -43,5 +44,14 @@ public class PostPersistenceAdapter implements PostPort {
         PostJpaEntity postJpaEntity = PostMapper.toJpaEntity(updatedPost);
         PostJpaEntity savedPost = postJPARepository.save(postJpaEntity);
         return PostMapper.toDomain(savedPost).toSnapshot();
+    }
+
+    @Override
+    public List<Post.PostSnapshot> getPostsByStatus(Status status) {
+        List<PostJpaEntity> postJpaEntities = postJPARepository.findByStatus(status.name());
+        return postJpaEntities.stream()
+                .map(PostMapper::toDomain)
+                .map(Post::toSnapshot)
+                .toList();
     }
 }

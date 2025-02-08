@@ -3,6 +3,7 @@ package fr.sawox.blog.application.adapter.out;
 import fr.sawox.blog.application.port.out.PostPort;
 
 import fr.sawox.blog.application.domain.model.Post;
+import fr.sawox.blog.common.Status;
 
 import java.util.*;
 
@@ -35,5 +36,13 @@ public class MockPostPort implements PostPort {
     @Override
     public Post.PostSnapshot updatePost(Post updatedPost) {
         return posts.put(updatedPost.getId(), updatedPost).toSnapshot();
+    }
+
+    @Override
+    public List<Post.PostSnapshot> getPostsByStatus(Status status) {
+        return posts.values().stream()
+                .filter(post -> post.getStatus() == status)
+                .map(Post::toSnapshot)
+                .toList();
     }
 }
