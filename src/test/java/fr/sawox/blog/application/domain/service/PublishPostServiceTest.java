@@ -30,7 +30,7 @@ public class PublishPostServiceTest {
         publishAPostUseCase.publishPost(postSnapshot);
         // Then
         Post.PostSnapshot publishPost = postPort.getPost(postSnapshot.id());
-        assertTrue("Post should be published", publishPost.status().equals(Status.PUBLISHED));
+        assertTrue("Post should be published", publishPost.isPublished());
     }
 
     @Test
@@ -44,5 +44,4 @@ public class PublishPostServiceTest {
         Post.PostSnapshot publishPost = postPort.getPost(postSnapshot.id());
         assertTrue("Post should have a published date", publishPost.publicationDate() != null);
     }
-
 }

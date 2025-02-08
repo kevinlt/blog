@@ -44,6 +44,7 @@ public class Post {
     public void publish() {
         this.status = Status.PUBLISHED;
         this.publicationDate = Instant.now();
+        this.updatedDate = Instant.now();
     }
 
     public record PostSnapshot(UUID id, String title, String content, Status status, Instant creationDate, Instant updatedDate, Instant publicationDate) {
