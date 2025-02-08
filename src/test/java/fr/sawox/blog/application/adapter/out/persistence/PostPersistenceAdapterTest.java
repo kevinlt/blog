@@ -90,10 +90,11 @@ public class PostPersistenceAdapterTest extends AbstractBaseIntegration {
                 Status.DRAFT,
                 Instant.now(),
                 null);
+        postPort.addPost(Post.fromSnapshot(postSnapshot3));
         // When
         var posts = postPort.getPostsByStatus(Status.DRAFT);
         // Then
-        assert posts.size() == 1;
+        assert posts.size() == 2;
     }
 
 }
