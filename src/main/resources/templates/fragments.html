@@ -1,0 +1,10 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+
+<li th:fragment="posts-list(item)" th:each="post : ${posts}">
+    <h2 th:text="${post.title}"></h2>
+    <p th:text="${post.content}"></p>
+    <small>Status: <span th:text="${post.status}"></span></small>
+</li>
+</html>

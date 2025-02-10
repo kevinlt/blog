@@ -1,0 +1,10 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+
+<form action="/post" th:fragment="add-post">
+    <input type="text" name="title" placeholder="Titre">
+    <textarea name="content" placeholder="Contenu"></textarea>
+    <button type="submit">Ajouter</button>
+</form>
+</html>

@@ -1,0 +1,28 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts</title>
+    <script src="https://unpkg.com/htmx.org@1.9.6"></script>
+</head>
+<body>
+<h1>Liste des Posts</h1>
+
+<button hx-get="/posts" hx-target="#posts" hx-swap="innerHTML">
+    Charger les posts
+</button>
+
+<ul id="posts">
+
+</ul>
+
+<button hx-get="/post" hx-target="#form" hx-swap="innerHTML">
+    Ajouter un post
+</button>
+<div id="form">
+</div>
+</body>
+</html>
